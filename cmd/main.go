@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/lucas-gio/goRest/routes"
 )
 
 import . "github.com/lucas-gio/goRest/configs"
@@ -25,18 +25,9 @@ func main() {
 	*/
 	router := gin.Default()
 	router.Static("/web", "./web")
-	router.LoadHTMLGlob("web/pages/*")
+	router.LoadHTMLGlob("web/templates/*")
 
-	router.GET("/index", func(c *gin.Context) {
-		// Responde un 200, con la página index, y el modelo.
-		c.HTML(http.StatusOK, "index.html", gin.H{"title": "Home Page"})
-	})
-
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	routes.InitializeRoutes(router)
 
 	router.Run(configuration.Server.Host + ":" + configuration.Server.Port)
 }
