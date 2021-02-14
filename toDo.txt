@@ -1,0 +1,4 @@
+· en datasource, los valores tienen que venir configurados por fuera.
+· agregar log logrus.
+· sacar el alta del main
+· hacer funcionar la parte de configuraciones.

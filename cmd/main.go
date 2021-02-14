@@ -1,8 +1,11 @@
 package main
 
 import (
+	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/lucas-gio/goRest/routes"
+	log "github.com/sirupsen/logrus"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 import . "github.com/lucas-gio/goRest/configs"
@@ -14,6 +17,19 @@ func main() {
 			Port: "8080",
 		},
 	}
+
+	(&Logger{}).InitLog()
+
+	var datasource *Datasource = new(Datasource).GetInstance()
+	defer datasource.Disconnect()
+
+	var err error = datasource.MakePingToEngineDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	datasource.GetDb().Collection("unaDePruebas").InsertOne(context.Background(), bson.M{"campo1": "abc123"})
+
 	/*var configuration Configuration
 	var err error
 
@@ -29,7 +45,7 @@ func main() {
 
 	routes.InitializeRoutes(router)
 
-	router.Run(configuration.Server.Host + ":" + configuration.Server.Port)
+	_ = router.Run(configuration.Server.Host + ":" + configuration.Server.Port)
 }
 
 /*
