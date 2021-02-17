@@ -1,11 +1,12 @@
 package routes
+/*
+import	"github.com/gin-gonic/gin"
+import "net/http"
+*/
+//"github.com/lucas-gio/goRest/controllers"
+//var bicyclesController BicyclesController = BicyclesController{}
 
-import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-)
-
-func InitializeRoutes(router *gin.Engine) {
+/*
 	router.GET("/404", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "404.html", gin.H{"title": "Home Page"})
 	})
@@ -14,9 +15,7 @@ func InitializeRoutes(router *gin.Engine) {
 		c.HTML(http.StatusOK, "accessories.html", gin.H{"title": "Home Page"})
 	})
 
-	router.GET("/bicycles", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "bicycles.html", gin.H{"title": "Home Page"})
-	})
+	//router.GET("/bicycles", bicyclesController.Bicycles)
 
 	router.GET("/cart", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "cart.html", gin.H{"title": "Home Page"})
@@ -38,5 +37,5 @@ func InitializeRoutes(router *gin.Engine) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
-	})
+	})*/
 }

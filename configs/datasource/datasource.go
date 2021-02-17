@@ -1,7 +1,8 @@
-package configs
+package datasource
 
 import (
 	"context"
+	. "github.com/lucas-gio/goRest/configs/configuration"
 	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -16,7 +17,7 @@ type Datasource struct {
 	cancel      context.CancelFunc
 }
 
-var once sync.Once
+var onceDatasource sync.Once
 
 func (this *Datasource) GetDb() *mongo.Database {
 	return this.GetMongoClient().Database("teste")
@@ -30,15 +31,11 @@ func (this *Datasource) GetContext() *context.Context {
 	return &this.ctx
 }
 
-func (this *Datasource) GetInstance() *Datasource {
-	once.Do(func() {
-		var pass string = "91701909Aa"
-		var dbName string = "goTest"
-
+func (this *Datasource) ConnectToMongodb(configuration *Configuration) {
+	onceDatasource.Do(func() {
 		this.ctx, this.cancel = context.WithTimeout(context.Background(), 10*time.Second)
 
-		var uri string = "mongodb+srv://gioialucasf:" + pass + "@gotest.kbkdt.mongodb.net/" + dbName + "?retryWrites=true&w=majority"
-		var clientOptions *options.ClientOptions = options.Client().ApplyURI(uri)
+		var clientOptions *options.ClientOptions = options.Client().ApplyURI(configuration.Database.ConnectionString)
 
 		var err error
 		this.mongoClient, err = mongo.Connect(this.ctx, clientOptions)
@@ -46,8 +43,6 @@ func (this *Datasource) GetInstance() *Datasource {
 			log.Fatal(err)
 		}
 	})
-
-	return this
 }
 
 func (this *Datasource) Disconnect() error {
@@ -55,6 +50,9 @@ func (this *Datasource) Disconnect() error {
 	return this.GetMongoClient().Disconnect(this.ctx)
 }
 
-func (this *Datasource) MakePingToEngineDB() error {
-	return this.GetMongoClient().Ping(this.ctx, readpref.Primary())
+func (this *Datasource) MakePingToEngineDB() {
+	var err error = this.GetMongoClient().Ping(this.ctx, readpref.Primary())
+	if err != nil {
+		log.Fatal(err)
+	}
 }
