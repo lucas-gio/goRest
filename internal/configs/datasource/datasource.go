@@ -2,7 +2,6 @@ package datasource
 
 import (
 	"context"
-	. "github.com/lucas-gio/goRest/configs/configuration"
 	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -31,7 +30,7 @@ func (this *Datasource) GetContext() *context.Context {
 	return &this.ctx
 }
 
-func (this *Datasource) ConnectToMongodb(configuration *Configuration) {
+func (this *Datasource) ConnectToMongodb(configuration *configuration.Configuration) {
 	onceDatasource.Do(func() {
 		this.ctx, this.cancel = context.WithTimeout(context.Background(), 10*time.Second)
 

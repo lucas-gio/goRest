@@ -2,7 +2,6 @@ package controllers
 
 import (
 	gin "github.com/gin-gonic/gin"
-	. "github.com/lucas-gio/goRest/configs/datasource"
 	"go.mongodb.org/mongo-driver/mongo"
 
 	"net/http"

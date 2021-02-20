@@ -1,7 +1,6 @@
 package configuration
 
 import (
-	"github.com/JeremyLoy/config"
 	log "github.com/sirupsen/logrus"
 	"path/filepath"
 	"sync"

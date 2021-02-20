@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	. "github.com/lucas-gio/goRest/configs/configuration"
-	. "github.com/lucas-gio/goRest/configs/datasource"
-	. "github.com/lucas-gio/goRest/configs/logger"
-	"github.com/lucas-gio/goRest/routes"
+	. "github.com/lucas-gio/goRest/internal/configs/configuration"
+	. "github.com/lucas-gio/goRest/internal/configs/datasource"
+	. "github.com/lucas-gio/goRest/internal/configs/logger"
+	"github.com/lucas-gio/goRest/internal/routes"
 )
 
 func main() {
