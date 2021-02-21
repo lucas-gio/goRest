@@ -12,13 +12,13 @@ type ConfigurationService struct {
 	configuration     Configuration
 }
 
-func (this *ConfigurationService) LoadConfigurations() {
-	this.onceConfiguration.Do(func() {
+func (c *ConfigurationService) LoadConfigurations() {
+	c.onceConfiguration.Do(func() {
 		var err error
-		const configFilepath string = "./internal/config/configuration/config.cfg"
+		const configFilepath string = "/home/pc/config.cfg"
 		var configFilePath string = filepath.FromSlash(configFilepath)
 
-		err = config.FromEnv().From(configFilePath).To(&this.configuration)
+		err = config.FromEnv().From(configFilePath).To(&c.configuration)
 
 		if err != nil {
 			var errorMsg string = "ConfigurationService file not found in " + configFilePath
@@ -28,6 +28,6 @@ func (this *ConfigurationService) LoadConfigurations() {
 	})
 }
 
-func (this *ConfigurationService) GetConfig() *Configuration {
-	return &this.configuration
+func (c *ConfigurationService) GetConfig() *Configuration {
+	return &c.configuration
 }
