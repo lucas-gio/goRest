@@ -10,3 +10,4 @@ Vía rest se habilita el alta, baja, modificación, y listado, de todas las enti
 * [Dingo (Inyección de dependencias)](https://github.com/elliotchance/dingo/)
 * [Config (Configuración)](https://github.com/JeremyLoy/config).
 * [Logrus (Logging)](https://github.com/sirupsen/logrus).
+* [Estructura de proyecto estándar](https://github.com/golang-standards/project-layout/blob/master/README_es.md).
