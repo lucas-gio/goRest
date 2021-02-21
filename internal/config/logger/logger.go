@@ -1,4 +1,4 @@
-package logger
+package goRest
 
 import (
 	log "github.com/sirupsen/logrus"

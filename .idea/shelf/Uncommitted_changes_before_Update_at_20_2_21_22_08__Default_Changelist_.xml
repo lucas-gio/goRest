@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_2_21_22_08_[Default_Changelist]" date="1613869728312" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_2_21_22_08_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20/2/21 22:08 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="internal/configs/configuration/config.cfg" />
+    <option name="AFTER_PATH" value="internal/config/configuration/config.cfg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_2_21_22_08_[Default_Changelist]/config.cfg" />
+  </binary>
+</changelist>

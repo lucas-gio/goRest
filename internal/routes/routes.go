@@ -1,5 +1,6 @@
-package routes
+package goRest
 
+/*
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -13,7 +14,7 @@ router.GET("/404", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "accessories.html", gin.H{"title": "Home Page"})
 	})
 
-	//router.GET("/bicycles", bicyclesController.Bicycles)
+	//
 
 	router.GET("/cart", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "cart.html", gin.H{"title": "Home Page"})
@@ -37,3 +38,4 @@ router.GET("/404", func(c *gin.Context) {
 		})
 	})
 }
+*/

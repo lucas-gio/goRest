@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="558004fc-8f65-4de3-b8c3-a9feac3bc281" name="Default Changelist" comment="Reestructuración del proyecto">
+      <change afterPath="$PROJECT_DIR$/cmd/server/dingo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/server/dingo.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/config/configuration/configuration.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/config/configuration/configurationService.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/config/datasource/datasource.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/config/datasource/datasourceService.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/interfaces/Controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/interfaces/IConfigurationService.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/interfaces/IDatasourceService.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/bicycles/bicycle.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/bicycles/bicycle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/bicycles/bicyclesController.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/bicycles/bicyclesController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/configs/configuration/config.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/configuration/config.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/configs/configuration/configuration.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/configs/datasource/datasource.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/configs/logger/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/logger/logger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/errors/errorsController.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/errors/errorsController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/routes/routes.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Go Application" />
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1oMIGTcpn72b4Bq9GxaCjO6mV9Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mongo" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dbScripts" />
+      <recent name="$PROJECT_DIR$/configs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cmd/server" />
+      <recent name="$PROJECT_DIR$/internal/bicycles" />
+      <recent name="$PROJECT_DIR$/internal" />
+      <recent name="$PROJECT_DIR$/deployments" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build github.com/lucas-gio/goRest/cmd/server">
+    <configuration name="scripts.js" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/dbScripts/scripts.js" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/lucas-gio/goRest/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="goRest" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="github.com/lucas-gio/goRest/cmd" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/lucas-gio/goRest/cmd/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="goRest" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/cmd/server/main.go" />
+      <package value="github.com/lucas-gio/goRest/cmd/server" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/lucas-gio/goRest/cmd/server" />
+        <item itemvalue="Database Script.scripts.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Subida inicial" />
+    <MESSAGE value="Modificación de plantillas&#10;Cambios en la estructura del proyecto" />
+    <MESSAGE value="Agrego configs/datasource dedicado a mantener info sobre la conexión a la base de datos mongo.&#10;&#10;Agrego un modelo models/bicycle de pruebas." />
+    <MESSAGE value="CAmbios" />
+    <MESSAGE value="CAmbios grales sobre conexión a bd y reestructuración del proyecto." />
+    <MESSAGE value="Reestructuración del proyecto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reestructuración del proyecto" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+</project>

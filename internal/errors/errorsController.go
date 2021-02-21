@@ -1,5 +1,1 @@
-package errors
-
-func main() {
-
-}
+package goRest

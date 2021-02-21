@@ -1,4 +1,4 @@
-package controllers
+package goRest
 
 type Bicycle struct {
 	Id          string

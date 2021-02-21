@@ -1,0 +1,34 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_2_21_15_27_[Default_Changelist]" date="1613845658834" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_2_21_15_27_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20/2/21 15:27 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="configs/configuration/go.sum" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="controllers/go.sum" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="models/go.sum" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="configs/datasource/go.sum" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="configs/logger/go.sum" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="configs/configuration/config.cfg" />
+    <option name="AFTER_PATH" value="internal/configs/configuration/config.cfg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_2_21_15_27_[Default_Changelist]/config.cfg" />
+  </binary>
+</changelist>

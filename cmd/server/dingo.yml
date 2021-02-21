@@ -1,0 +1,10 @@
+services:
+  configurationService:
+    type: '*ConfigurationService'
+    interface: IConfigurationService
+
+  datasourceService:
+    type: '*DatasourceService'
+    interface: IDatasourceService
+    properties:
+      configurationService: '@{configurationService}'
