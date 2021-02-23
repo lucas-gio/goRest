@@ -15,6 +15,5 @@ func (this *Logger) InitLog() {
 	// Can be any io.Writer, see below for File example
 	log.SetOutput(os.Stdout)
 
-	// Only log the warning severity or above.
 	log.SetLevel(log.DebugLevel)
 }

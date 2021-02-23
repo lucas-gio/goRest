@@ -12,10 +12,10 @@ func main() {
 
 	var configurationService IConfigurationService = DefaultContainer.GetconfigurationService()
 	configurationService.LoadConfigurations()
-	var configuration *Configuration = configurationService.GetConfig()
+	var configuration *Configuration = configurationService.Config()
 
 	var datasource IDatasourceService = DefaultContainer.GetdatasourceService()
-	datasource.GetMongoClient()
+	datasource.MongoClient()
 	defer datasource.Disconnect()
 	datasource.MakePingToEngineDB()
 

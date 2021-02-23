@@ -17,37 +17,38 @@ type DatasourceService struct {
 	ConfigurationService IConfigurationService
 }
 
-func (this *DatasourceService) GetDb() *mongo.Database {
-	return this.GetMongoClient().Database("teste")
+func (d *DatasourceService) Db() *mongo.Database {
+	return d.MongoClient().Database("teste")
 }
 
-func (this *DatasourceService) GetContext() *context.Context {
-	return &this.datasource.ctx
+func (d *DatasourceService) Context() *context.Context {
+	return &d.datasource.ctx
 }
 
-func (this *DatasourceService) GetMongoClient() *mongo.Client {
-	this.onceDatasource.Do(func() {
-		this.datasource.ctx, this.datasource.cancel = context.WithTimeout(context.Background(), 10*time.Second)
+func (d *DatasourceService) MongoClient() *mongo.Client {
+	d.onceDatasource.Do(func() {
+		d.datasource.ctx, d.datasource.cancel = context.WithTimeout(context.Background(), 10*time.Second)
 
-		var clientOptions *options.ClientOptions = options.Client().ApplyURI(this.ConfigurationService.GetConfig().Database.ConnectionString)
+		var connectionString string = d.ConfigurationService.Config().Database.ConnectionString
+		var clientOptions *options.ClientOptions = options.Client().ApplyURI(connectionString)
 
 		var err error
-		this.datasource.mongoClient, err = mongo.Connect(this.datasource.ctx, clientOptions)
+		d.datasource.mongoClient, err = mongo.Connect(d.datasource.ctx, clientOptions)
 		if err != nil {
 			log.Fatal(err)
 		}
 	})
 
-	return this.datasource.mongoClient
+	return d.datasource.mongoClient
 }
 
-func (this *DatasourceService) Disconnect() error {
-	(this.datasource.cancel)()
-	return this.datasource.mongoClient.Disconnect(this.datasource.ctx)
+func (d *DatasourceService) Disconnect() error {
+	(d.datasource.cancel)()
+	return d.datasource.mongoClient.Disconnect(d.datasource.ctx)
 }
 
-func (this *DatasourceService) MakePingToEngineDB() {
-	var err error = this.datasource.mongoClient.Ping(this.datasource.ctx, readpref.Primary())
+func (d *DatasourceService) MakePingToEngineDB() {
+	var err error = d.datasource.mongoClient.Ping(d.datasource.ctx, readpref.Primary())
 	if err != nil {
 		log.Fatal(err)
 	}

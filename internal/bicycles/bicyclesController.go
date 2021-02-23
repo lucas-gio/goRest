@@ -14,9 +14,9 @@ func (this *BicyclesController) initializeRoutes(router *gin.Engine) {
 
 func (b *BicyclesController) Bicycles(c *gin.Context) {
 	/*var datasource DatasourceService = new(DatasourceService).GetInstance()
-	var db *mongo.Database = datasource.GetDb()
+	var db *mongo.Database = datasource.Db()
 
-	db.Collection("bicycles").Find(datasource.GetContext())*/
+	db.Collection("bicycles").Find(datasource.Context())*/
 
 	//c.HTML(http.StatusOK, gin.H{"title": "Home Page"})
 	c.HTML(http.StatusOK, "404.html", gin.H{"title": "Home Page"})

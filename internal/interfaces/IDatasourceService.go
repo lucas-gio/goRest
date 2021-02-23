@@ -6,9 +6,9 @@ import (
 )
 
 type IDatasourceService interface {
-	GetDb() *mongo.Database
-	GetContext() *context.Context
-	GetMongoClient() *mongo.Client
+	Db() *mongo.Database
+	Context() *context.Context
+	MongoClient() *mongo.Client
 	Disconnect() error
 	MakePingToEngineDB()
 }

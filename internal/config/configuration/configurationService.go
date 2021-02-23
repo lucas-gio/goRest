@@ -3,6 +3,7 @@ package goRest
 import (
 	"github.com/JeremyLoy/config"
 	log "github.com/sirupsen/logrus"
+	"os"
 	"path/filepath"
 	"sync"
 )
@@ -15,19 +16,22 @@ type ConfigurationService struct {
 func (c *ConfigurationService) LoadConfigurations() {
 	c.onceConfiguration.Do(func() {
 		var err error
-		const configFilepath string = "/home/pc/config.cfg"
-		var configFilePath string = filepath.FromSlash(configFilepath)
 
-		err = config.FromEnv().From(configFilePath).To(&c.configuration)
+		configFilepath := os.Getenv("GOREST_CONFIG")
+		log.Info("Enviroment variable GOREST_CONFIG has value: " + configFilepath)
+
+		configFilepath = filepath.FromSlash(configFilepath)
+
+		err = config.FromEnv().From(configFilepath).To(&c.configuration)
 
 		if err != nil {
-			var errorMsg string = "ConfigurationService file not found in " + configFilePath
+			var errorMsg string = "ConfigurationService file not found in " + configFilepath
 			log.Error(errorMsg)
 			panic(errorMsg)
 		}
 	})
 }
 
-func (c *ConfigurationService) GetConfig() *Configuration {
+func (c *ConfigurationService) Config() *Configuration {
 	return &c.configuration
 }
