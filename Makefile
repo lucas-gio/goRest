@@ -1,11 +1,11 @@
 dockerProduction:
-	docker build ./ --build-arg app_env=production
+	docker build ./ -t gorest --build-arg app_env=production
 
 dockerDevelopment:
-	docker build ./
+	docker build ./ -t gorest
 
 run:
-	docker run -i -t -p 8080:8080 gorest
+	docker run -i -t -p 8080:8080 gorest:latest
 
 all-production: dockerProduction run
 all-dev: dockerDevelopment run

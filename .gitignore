@@ -1,2 +1,4 @@
 # Dependency directories
 /vendor/
+.idea/
+/.idea/

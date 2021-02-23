@@ -1,20 +1,30 @@
-# Con base en la imágen golang
-FROM golang
+# Image based golang
+FROM golang:1.15.7-buster AS build
 ARG app_env
 ENV APP_ENV $app_env
 
-# Se copia el directorio del proyecto a la ruta del contenedor /go/.... y lo usa como referencia para más adelante.
-COPY ./ /go/src/github.com/lucas-gio/goRest
-WORKDIR /go/src/github.com/lucas-gio/goRest
+# First the copy of go .mod/.sum are made.
+WORKDIR /src
+COPY go.mod .
+COPY go.sum .
 
-# Se descargan las dependencias y construye el proyecto
-#RUN go get .
+# Download dependencies only if repository is empty
 RUN go mod download
 RUN go mod vendor
 RUN go mod verify
-RUN go build ./cmd/server/
 
-# Si se especifica production, ejecuta la aplicación; sino, ejecuta el código con recarga en caliente.
+# Copy all project inside
+COPY . .
+
+# Build the executable
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/gorest.bin -p 4 -v ./cmd/server
+
+# Another stage. From new container, copy binary. Now isn't needed golang development container.
+FROM scratch AS bin
+COPY --from=build /out/gorest.bin /bin/gorest.bin
+ENTRYPOINT ["/bin/gorest.bin"]
+
+# If production is set, then run. Else, use hot reload.
 CMD if [ ${APP_ENV} = production ]; \
     then \
     app; \
