@@ -17,7 +17,6 @@ func main() {
 	var datasource IDatasourceService = DefaultContainer.GetdatasourceService()
 	datasource.MongoClient()
 	defer datasource.Disconnect()
-	datasource.MakePingToEngineDB()
 
 	router := gin.Default()
 	router.Static("/web", "./web")
@@ -25,7 +24,7 @@ func main() {
 
 	//routes.InitializeRoutes(router)
 	//router.GET("/bicycles", b.Bicycles)
-	router.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping2", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})

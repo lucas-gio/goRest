@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+    goRest:
+        image: gorest:latest
+        environment:
+            - Server__Host=localhost
+            - Server__Port=8080
+            - Database__ConnectionString=mongodb+srv://gioialucasf:91701909Aa@cluster0.kbkdt.mongodb.net/goRest?retryWrites=true&w=majority
+            - Database__DbName=goRest
+        ports:
+            - 8080:8080
+        volumes:
+            - ./:/go/src/app/github.com/lucas-gio/goRest

@@ -7,5 +7,6 @@ type Configuration struct {
 	}
 	Database struct {
 		ConnectionString string
+		DbName           string
 	}
 }

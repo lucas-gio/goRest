@@ -1,12 +1,27 @@
-dockerBuild:
-	docker build ./ -t gorest
+logs:
+	docker-compose logs -f
 
-dockerProduction: dockerBuild --build-arg app_env=production
+default:
+	@echo "=============building Local API============="
+	docker build -f Dockerfile -t gorest:latest .
 
-dockerDevelopment: dockerBuild
+up: default
+	@echo "=============starting locally============="
+	docker-compose up -d
 
-run:
-	docker run -i -t -p 8080:8080 gorest:latest -e GOREST_CONFIG="/home/pc/config.cfg"
+delete:
+	docker rmi gorest:latest
 
-all-prod: dockerProduction run
-all-dev: dockerDevelopment
+test:
+	go test -v -cover ./...
+
+down:
+	docker-compose down
+
+clean: down
+	@echo "=============cleaning up============="
+	rm -f gorest
+	docker system prune -f
+	docker volume prune -f
+
+run: up logs

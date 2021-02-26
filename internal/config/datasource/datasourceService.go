@@ -11,45 +11,61 @@ import (
 	"time"
 )
 
+/*DatasourceService: the service with his dependencies*/
 type DatasourceService struct {
 	onceDatasource       sync.Once
 	datasource           Datasource
 	ConfigurationService IConfigurationService
 }
 
+const timeout time.Duration = 30 * time.Second
+
+/*Db: was created as helper to use in each db query.*/
 func (d *DatasourceService) Db() *mongo.Database {
-	return d.MongoClient().Database("teste")
+	return d.MongoClient().Database(d.ConfigurationService.Config().Database.DbName)
 }
 
-func (d *DatasourceService) Context() *context.Context {
-	return &d.datasource.ctx
-}
-
+/*MongoClient: instance the singleton Datasource.mongoClient. If cant connect to Db, then an log fatal and panic is generated. */
 func (d *DatasourceService) MongoClient() *mongo.Client {
 	d.onceDatasource.Do(func() {
-		d.datasource.ctx, d.datasource.cancel = context.WithTimeout(context.Background(), 10*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), timeout)
+		defer cancel()
 
 		var connectionString string = d.ConfigurationService.Config().Database.ConnectionString
+
+		log.Info("Connecting to " + connectionString)
 		var clientOptions *options.ClientOptions = options.Client().ApplyURI(connectionString)
 
 		var err error
-		d.datasource.mongoClient, err = mongo.Connect(d.datasource.ctx, clientOptions)
+		d.datasource.mongoClient, err = mongo.Connect(ctx, clientOptions)
+
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("Mongo connect: cant connect to Db: ", err)
+			panic(err)
 		}
+
+		ctx, cancel = context.WithTimeout(context.Background(), timeout)
+		defer cancel()
+
+		err = d.datasource.mongoClient.Ping(ctx, readpref.Primary())
+		if err != nil {
+			log.Fatal("Mongo ping: response not received: ", err)
+			panic(err)
+		}
+
+		log.Info("Mongo ping: received!!!")
+		log.Info("Connection to DB success")
 	})
 
 	return d.datasource.mongoClient
 }
 
+/*Disconnect: make an close of db connection*/
 func (d *DatasourceService) Disconnect() error {
-	(d.datasource.cancel)()
-	return d.datasource.mongoClient.Disconnect(d.datasource.ctx)
-}
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
 
-func (d *DatasourceService) MakePingToEngineDB() {
-	var err error = d.datasource.mongoClient.Ping(d.datasource.ctx, readpref.Primary())
-	if err != nil {
-		log.Fatal(err)
-	}
+	log.Info("Mongo disconnect: closing db connection")
+
+	return d.datasource.mongoClient.Disconnect(ctx)
 }

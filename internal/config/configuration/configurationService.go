@@ -3,8 +3,6 @@ package goRest
 import (
 	"github.com/JeremyLoy/config"
 	log "github.com/sirupsen/logrus"
-	"os"
-	"path/filepath"
 	"sync"
 )
 
@@ -17,17 +15,15 @@ func (c *ConfigurationService) LoadConfigurations() {
 	c.onceConfiguration.Do(func() {
 		var err error
 
-		configFilepath := os.Getenv("GOREST_CONFIG")
-		log.Info("Enviroment variable GOREST_CONFIG has value: " + configFilepath)
+		// MUST be same that out folder of docker last stage.
+		//var configFilepath string = filepath.FromSlash("/goRest/gorest.conf")
 
-		configFilepath = filepath.FromSlash(configFilepath)
-
-		err = config.FromEnv().From(configFilepath).To(&c.configuration)
+		err = config.FromEnv(). /*.From(configFilepath)*/ To(&c.configuration)
 
 		if err != nil {
-			var errorMsg string = "ConfigurationService file not found in " + configFilepath
-			log.Error(errorMsg)
-			panic(errorMsg)
+			var errorMsg string = "Error found when load configurations: "
+			log.Error(errorMsg, err)
+			panic(err)
 		}
 	})
 }
