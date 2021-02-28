@@ -13,12 +13,7 @@ type ConfigurationService struct {
 
 func (c *ConfigurationService) LoadConfigurations() {
 	c.onceConfiguration.Do(func() {
-		var err error
-
-		// MUST be same that out folder of docker last stage.
-		//var configFilepath string = filepath.FromSlash("/goRest/gorest.conf")
-
-		err = config.FromEnv(). /*.From(configFilepath)*/ To(&c.configuration)
+		var err error = config.FromEnv().To(&c.configuration)
 
 		if err != nil {
 			var errorMsg string = "Error found when load configurations: "

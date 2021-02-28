@@ -1,0 +1,8 @@
+FROM golang:1.15.2
+RUN go get github.com/githubnemo/CompileDaemon
+RUN go get github.com/go-delve/delve/cmd/dlv
+WORKDIR /src
+COPY . .
+
+RUN go build -gcflags "all=-N -l" -o ./bin/goRest.bin ./cmd/server/
+ENTRYPOINT dlv --listen=:40000 --headless=true --api-version=2 --accept-multiclient exec ./bin/goRest.bin

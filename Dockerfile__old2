@@ -1,0 +1,33 @@
+# Image based golang
+FROM golang:1.15.7-buster AS build
+
+ENV CGO_ENABLED=0
+ENV GOOS=linux
+ENV GOARCH=amd64
+
+#RUN  mkdir -p /go/src \
+ # && mkdir -p /go/bin \
+  #&& mkdir -p /go/pkg
+#ENV GOPATH=/go
+#ENV PATH=$GOPATH/bin:$PATH
+
+RUN mkdir -p /goRestProject
+WORKDIR /goRestProject
+
+# First, were copying go mod and go sum for cache downloads in newer builds.
+COPY go.mod .
+COPY go.sum .
+
+RUN echo "deb http://ftp.debian.org/debian stretch-backports main" | tee /etc/apt/sources.list.d/stretch-backports.list
+RUN apt-get update && apt-get install -y bash git psmisc inotify-tools
+
+# installing Delve debugger
+RUN go get github.com/go-delve/delve/cmd/dlv@latest
+RUN go mod download -x
+RUN go mod verify
+
+# Now, the rest of the project
+COPY . .
+
+# This script manage hot reload and remote debugger.
+ENTRYPOINT bash startScript.sh

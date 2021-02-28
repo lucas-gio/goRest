@@ -1,0 +1,13 @@
+version: '3'
+services:
+  gebug-gorest:
+    build:
+      context: ..
+      dockerfile: .gebug/Dockerfile
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - ../:/src:ro
+    ports:
+      - 8080:8080
+      - 40000:40000
