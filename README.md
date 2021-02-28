@@ -1,4 +1,4 @@
-# goRest, un ecommerce de bicicletas para aprender go con mongodb.
+# goRest, un ecommerce de bicicletas para aprender go con mongodb. (En desarrollo)
 
 La idea principal es listar productos de distintas categorías. El usuario puede ver precios, marcas, descripciones, etc.
 Vía rest se habilita el alta, baja, modificación, y listado, de todas las entidades del sistema.
