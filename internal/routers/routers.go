@@ -1,5 +1,33 @@
 package goRest
 
+import (
+	"github.com/gin-gonic/gin"
+	. "github.com/lucas-gio/goRest/internal/interfaces"
+)
+
+type RoutesManager struct {
+	controllerList []IController
+}
+
+// Register the route configuration of app
+func (r *RoutesManager) IncludeRoutesFrom(controllers ...IController) {
+	r.controllerList = append(r.controllerList, controllers...)
+}
+
+// initialization
+func (r *RoutesManager) Init() (router *gin.Engine) {
+	router = gin.Default()
+
+	router.Static("/web", "./web")
+	router.LoadHTMLGlob("web/templates/**/*")
+
+	for _, controller := range r.controllerList {
+		(controller).InitializeRoutes(router)
+	}
+
+	return
+}
+
 /*
 import (
 	"github.com/gin-gonic/gin"
@@ -21,7 +49,7 @@ router.GET("/404", func(c *gin.Context) {
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{"titles": "Home Page"})
+		c.HTML(http.StatusOK, "index.tmpl", gin.H{"titles": "Home Page"})
 	})
 
 	router.GET("/parts", func(c *gin.Context) {

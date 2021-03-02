@@ -7,5 +7,5 @@ import (
 type IDatasourceService interface {
 	Db() *mongo.Database
 	MongoClient() *mongo.Client
-	Disconnect() error
+	Disconnect()
 }

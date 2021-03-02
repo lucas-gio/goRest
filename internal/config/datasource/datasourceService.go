@@ -15,7 +15,7 @@ import (
 type DatasourceService struct {
 	onceDatasource       sync.Once
 	datasource           Datasource
-	ConfigurationService IConfigurationService
+	ConfigurationService IConfigurationService `di.inject:"configurationService"`
 }
 
 const timeout time.Duration = 30 * time.Second
@@ -61,11 +61,14 @@ func (d *DatasourceService) MongoClient() *mongo.Client {
 }
 
 /*Disconnect: make an close of db connection*/
-func (d *DatasourceService) Disconnect() error {
+func (d *DatasourceService) Disconnect() {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
 	log.Info("Mongo disconnect: closing db connection")
 
-	return d.datasource.mongoClient.Disconnect(ctx)
+	if err := d.datasource.mongoClient.Disconnect(ctx); err != nil {
+		log.Error("Mongo disconnect: error detected when disconnect from db. ", err)
+		panic(err)
+	}
 }
