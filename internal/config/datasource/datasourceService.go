@@ -2,7 +2,7 @@ package goRest
 
 import (
 	"context"
-	. "github.com/lucas-gio/goRest/internal/interfaces"
+	"github.com/lucas-gio/goRest/internal/config/configuration"
 	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -15,7 +15,7 @@ import (
 type DatasourceService struct {
 	onceDatasource       sync.Once
 	datasource           Datasource
-	ConfigurationService IConfigurationService `di.inject:"configurationService"`
+	ConfigurationService goRest.IConfigurationService `di.inject:"configurationService"`
 }
 
 const timeout time.Duration = 30 * time.Second
