@@ -5,12 +5,12 @@ default:
 	@echo "=============building Local API============="
 	docker build -f Dockerfile -t gorest:latest .
 
-up: default
+up:
 	@echo "=============starting locally============="
 	docker-compose up -d
 
 delete:
-	docker rmi gorest:latest
+	docker rmi gorest
 
 test:
 	go test -v -cover ./...
@@ -20,8 +20,12 @@ down:
 
 clean: down
 	@echo "=============cleaning up============="
-	rm -f gorest
-	docker system prune -f
-	docker volume prune -f
+	docker rmi $(docker images -q)
+
+rmall:
+	docker system prune -f -a
+
+ls:
+	docker image ls
 
 run: up logs

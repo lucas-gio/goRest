@@ -1,14 +1,16 @@
-version: '3.6'
-
+version: "3.6"
 services:
-    goRest:
-        image: gorest:latest
+    web:
+        build:
+            context: .
+            dockerfile: dev.Dockerfile
+        container_name: gorest
+        ports:
+            - 8080:8080
+        volumes:
+            - ./:/app
         environment:
             - Server__Host=localhost
             - Server__Port=8080
             - Database__ConnectionString=example.com
             - Database__DbName=goRest
-        ports:
-            - 8080:8080
-        volumes:
-            - ./:/go/src/app/github.com/lucas-gio/goRest

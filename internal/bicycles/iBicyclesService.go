@@ -1,5 +1,5 @@
 package goRest
 
 type IBicyclesService interface {
-	ListBicycles() (bicyclesList *[]Bicycle)
+	ListBicycles(string, string) (bicyclesList *[]Bicycle)
 }

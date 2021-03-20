@@ -9,9 +9,10 @@ type RoutesManager struct {
 	controllerList []IController
 }
 
-// Register the route configuration of app
-func (r *RoutesManager) IncludeRoutesFrom(controllers ...IController) {
+// Register the route configuration of app.
+func (r *RoutesManager) IncludeRoutesFrom(controllers ...IController) *RoutesManager {
 	r.controllerList = append(r.controllerList, controllers...)
+	return r
 }
 
 // initialization

@@ -10,7 +10,10 @@ type BicyclesController struct {
 }
 
 func (b *BicyclesController) Bicycles(c *gin.Context) {
-	var bicyclesList *[]Bicycle = b.bicyclesService.ListBicycles()
+	var max string = c.DefaultQuery("max", "25")
+	var offset string = c.DefaultQuery("offset", "0")
+
+	var bicyclesList *[]Bicycle = b.bicyclesService.ListBicycles(max, offset)
 	c.JSON(http.StatusOK, gin.H{"bicycles": *bicyclesList})
 }
 

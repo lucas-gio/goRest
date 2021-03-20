@@ -7,7 +7,9 @@ import (
 	. "github.com/lucas-gio/goRest/internal/config/configuration"
 	. "github.com/lucas-gio/goRest/internal/config/datasource"
 	. "github.com/lucas-gio/goRest/internal/config/logger"
+	. "github.com/lucas-gio/goRest/internal/helpers"
 	. "github.com/lucas-gio/goRest/internal/interfaces"
+	. "github.com/lucas-gio/goRest/internal/parts"
 	. "github.com/lucas-gio/goRest/internal/routers"
 	log "github.com/sirupsen/logrus"
 	"reflect"
@@ -46,10 +48,15 @@ func initDependencies() {
 	// System
 	_, _ = di.RegisterBean("configurationService", reflect.TypeOf(new(ConfigurationService)))
 	_, _ = di.RegisterBean("datasourceService", reflect.TypeOf(new(DatasourceService)))
+	_, _ = di.RegisterBean("databaseHelper", reflect.TypeOf(new(DatabaseHelper)))
 
 	// Bicycles
 	_, _ = di.RegisterBean("bicyclesService", reflect.TypeOf(new(BicyclesService)))
 	_, _ = di.RegisterBean("bicyclesController", reflect.TypeOf(new(BicyclesController)))
+
+	// Parts
+	_, _ = di.RegisterBean("partsService", reflect.TypeOf(new(PartsService)))
+	_, _ = di.RegisterBean("partsController", reflect.TypeOf(new(PartsController)))
 
 	_ = di.InitializeContainer()
 }
@@ -59,12 +66,10 @@ When an new controller is added, then you must add it to IncludeRoutesFrom metho
 Note the conversion, all singleton instance obtained from dependency container is converted to *IController.
 */
 func initRouter() (router *gin.Engine) {
-	var routerManager *RoutesManager = new(RoutesManager)
-
-	routerManager.IncludeRoutesFrom(
+	router = new(RoutesManager).IncludeRoutesFrom(
 		di.GetInstance("bicyclesController").(IController),
-	)
+		di.GetInstance("partsController").(IController),
+	).Init()
 
-	router = routerManager.Init()
 	return
 }

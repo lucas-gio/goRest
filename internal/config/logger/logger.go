@@ -7,10 +7,10 @@ import (
 
 type Logger struct{}
 
-func (this *Logger) InitLog() {
+func (l *Logger) InitLog() {
 	// Output to stdout instead of the default stderr
 	// Can be any io.Writer, see below for File example
 	log.SetOutput(os.Stdout)
 
-	log.SetLevel(log.InfoLevel)
+	log.SetLevel(log.TraceLevel)
 }
